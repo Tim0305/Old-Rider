@@ -1,7 +1,17 @@
 extends KinematicBody2D
 
-func _ready():
-	pass
+const SPEED = 200
+var currentSpeed = SPEED
+const FIXED_Y = 190
 
-func _process(delta):
+func _ready():
+	position.x = 0
+	position.y = FIXED_Y	
 	$AnimationPlayer.play("Corriendo")
+
+func _physics_process(delta):
+	# Movimiento horizontal
+	position.x += currentSpeed * delta
+	
+func setSpeed(percent: float):
+	currentSpeed = SPEED * percent

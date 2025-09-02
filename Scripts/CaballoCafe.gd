@@ -1,16 +1,18 @@
 extends KinematicBody2D
 
-const SPEED = -120
-# Cambiar para determinar el valor inicial en x
-const INITIAL_X = 250
+const SPEED = 200
+var currentSpeed = SPEED
+const FIXED_Y = 150
 
 func _ready():
-	# El caballo blanco alcanza al caballo cafe moviendo hacia la izquierda el caballo cafe
-	# Posicion inical en 600 y debe llegar a INITIAL_X
-	position.x = 600
-
-func _process(delta):
-	# Animar el inicio de la carrera
+	position.x = 0
+	position.y = FIXED_Y
 	$AnimationPlayer.play("Corriendo")
-	if (position.x >= INITIAL_X):
-		position.x += SPEED * delta
+
+func _physics_process(delta):
+	position.x += currentSpeed * delta
+
+func setSpeed(percent: float):
+	currentSpeed = SPEED * percent
+
+
