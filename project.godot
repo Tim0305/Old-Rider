@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Caballo",
+"language": "GDScript",
+"path": "res://Scripts/models/Caballo.gd"
+}, {
+"base": "Area2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://Scripts/models/Card.gd"
+} ]
+_global_script_class_icons={
+"Caballo": "",
+"Card": ""
+}
+
 [application]
 
 config/name="Old Rider"
@@ -16,7 +32,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-BarraEstamina="*res://Objetos/BarraEstamina.tscn"
+BarraEstamina="*res://Scripts/BarraEstamina.gd"
+CardManager="*res://Scripts/managers/CardManager.gd"
 
 [display]
 

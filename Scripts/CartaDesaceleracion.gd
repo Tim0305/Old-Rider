@@ -1,15 +1,7 @@
-extends Area2D
+extends Card
 
-onready var sprite = $Sprite
-
-func _ready():
+func _init().(5):
 	pass
-
-func _on_Area2D_mouse_entered():
-	# Cambiar la opacidad
-	sprite.modulate.a = 0.8
-
-
-func _on_Area2D_mouse_exited():
-	# Reiniciar la opacidad
-	sprite.modulate.a = 1
+	
+func _ready():
+	sprite = $Sprite

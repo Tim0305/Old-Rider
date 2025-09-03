@@ -1,18 +1,11 @@
-extends KinematicBody2D
+extends Caballo
 
-const SPEED = 200
-var currentSpeed = SPEED
-const FIXED_Y = 150
+func _init().(150):
+	pass
 
 func _ready():
-	position.x = 0
-	position.y = FIXED_Y
 	$AnimationPlayer.play("Corriendo")
 
-func _physics_process(delta):
-	position.x += currentSpeed * delta
-
-func setSpeed(percent: float):
-	currentSpeed = SPEED * percent
-
-
+# Se ejecuta cada segundo
+func _on_timer_timeout():
+	energy = clamp(energy + 1, MIN_ENERGY, MAX_ENERGY)
