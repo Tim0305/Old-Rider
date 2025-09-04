@@ -3,13 +3,29 @@
 [ext_resource path="res://Recursos/recursos/Fondo.png" type="Texture" id=1]
 [ext_resource path="res://Objetos/CaballoCafe.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objetos/CaballoBlanco.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Fondo.gd" type="Script" id=4]
 [ext_resource path="res://Objetos/CartaAceleracion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objetos/CartaEnergia+.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objetos/CartaEnergia-.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objetos/CartaDesaceleracion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objetos/BarraEstamina.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Hipodromo.gd" type="Script" id=10]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+#const SCREEN_WIDTH = 600
+#const SPEED = -120
+
+func _ready():
+	pass # Replace with function body.
+
+# Scroll infinito
+#func _process(delta):
+#	position += Vector2(SPEED * delta, 0)
+#	# Validar el limite de la pantalla
+#	if position.x <= 0:
+#		position.x += SCREEN_WIDTH
+"
 
 [node name="Hipodromo" type="Node2D"]
 position = Vector2( 0, 50 )
@@ -23,13 +39,13 @@ __meta__ = {
 position = Vector2( 860, 122 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
-script = ExtResource( 4 )
+script = SubResource( 1 )
 
 [node name="Fondo2" type="Sprite" parent="."]
 position = Vector2( 3260, 122 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
-script = ExtResource( 4 )
+script = SubResource( 1 )
 
 [node name="CaballoCafe" parent="." instance=ExtResource( 2 )]
 position = Vector2( 250, 150 )

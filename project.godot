@@ -9,19 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "Node",
 "class": "Caballo",
 "language": "GDScript",
 "path": "res://Scripts/models/Caballo.gd"
 }, {
-"base": "Area2D",
-"class": "Card",
+"base": "KinematicBody2D",
+"class": "Caballo2D",
 "language": "GDScript",
-"path": "res://Scripts/models/Card.gd"
+"path": "res://Scripts/scenes/Caballos/Caballo2D.gd"
+}, {
+"base": "Area2D",
+"class": "Carta2D",
+"language": "GDScript",
+"path": "res://Scripts/scenes/Cartas/Carta2D.gd"
 } ]
 _global_script_class_icons={
 "Caballo": "",
-"Card": ""
+"Caballo2D": "",
+"Carta2D": ""
 }
 
 [application]
@@ -32,8 +38,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-BarraEstamina="*res://Scripts/BarraEstamina.gd"
-CardManager="*res://Scripts/managers/CardManager.gd"
+Global="*res://Scripts/Global.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-extends Card
+extends Carta2D
 
 func _init().(2):
 	pass

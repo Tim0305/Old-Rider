@@ -1,5 +1,5 @@
 extends Area2D
-class_name Card
+class_name Carta2D
 
 const OPACITY_HOVER = 0.5
 const OPACITY_NORMAL = 1
