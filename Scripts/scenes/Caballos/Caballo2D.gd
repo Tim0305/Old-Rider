@@ -21,13 +21,13 @@ func _ready():
 	timer.autostart = true
 	add_child(timer)
 	timer.connect("timeout", self, "_on_timer_timeout")  # conectar señal
-
+	
 func _physics_process(delta):
 	# Movimiento horizontal
-	jugador.position.x += jugador.SPEED * delta
+	jugador.position.x += jugador.currentSpeed * delta
 	position.x = jugador.position.x
 
 # Se ejecuta cada segundo
 func _on_timer_timeout():
 	# Subir la estamina cada segundo
-	jugador.setEnergy(jugador.energy + 1)
+	jugador.incrementEnergy()

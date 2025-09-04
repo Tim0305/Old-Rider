@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/scenes/Caballos/Caballo2D.gd"
 }, {
+"base": "Node",
+"class": "Carta",
+"language": "GDScript",
+"path": "res://Scripts/models/Carta.gd"
+}, {
 "base": "Area2D",
 "class": "Carta2D",
 "language": "GDScript",
@@ -27,6 +32,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Caballo": "",
 "Caballo2D": "",
+"Carta": "",
 "Carta2D": ""
 }
 
