@@ -6,3 +6,6 @@ func _init().(Global.enemigo):
 func _ready():
 	$AnimationPlayer.play("Corriendo")
 
+func _process(delta):
+	# Juego del enemigo
+	pass
