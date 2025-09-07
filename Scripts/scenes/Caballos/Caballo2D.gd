@@ -9,9 +9,10 @@ func _init(jugador: Caballo):
 	self.jugador = jugador
 
 func _ready():
-	# Empezar en 0 en X y Y en FIXED_Y
-	jugador.position.x = 0
-	position.x = 0
+	# Empezar en -150 (efecto de inicio de carrera) en X
+	# y Y en FIXED_Y
+	jugador.position.x = -150
+	position.x = -150
 	position.y = jugador.FIXED_Y
 
 	# Creamos y configuramos el Timer

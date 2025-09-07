@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fondo rep.png-a348d1b91bf65ad078dc008cd7603693.stex"
+path="res://.import/START FONDO.png-82644dff4f1b0aefdc39d3ef52530f5f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Recursos/recursos/fondo rep.png"
-dest_files=[ "res://.import/fondo rep.png-a348d1b91bf65ad078dc008cd7603693.stex" ]
+source_file="res://Recursos/recursos/START FONDO.png"
+dest_files=[ "res://.import/START FONDO.png-82644dff4f1b0aefdc39d3ef52530f5f.stex" ]
 
 [params]
 

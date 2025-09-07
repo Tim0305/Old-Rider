@@ -3,7 +3,7 @@ class_name Carta2D
 
 const OPACITY_DISABLED = 0.5
 const OPACITY_ENABLED = 1
-const OPACITY_HOVER = 0.5
+const OPACITY_HOVER = 0.8
 
 var carta: Carta
 var sprite: Sprite

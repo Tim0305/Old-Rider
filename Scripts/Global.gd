@@ -24,10 +24,8 @@ var isCartaEnergiaNegativa: bool = false
 
 # Funciones
 func playCartaAceleracion(jugador: Caballo):
-	# Verificar si la carta esta habilitada
-	if (cartaAceleracion.enabled):
-		# Activar la bandera
-		isCartaAceleracion = true
+	# Verificar si el jugador tiene energia suficiente
+	if (jugador.energy >= cartaAceleracion.energy):
 		# Restar la energia
 		jugador.energy -= cartaAceleracion.energy
 		# Aumentar la velocidad a un 125% por tres segundos
@@ -36,14 +34,13 @@ func playCartaAceleracion(jugador: Caballo):
 		yield(wait(cartaAceleracion.duration), "timeout")
 		# Reiniciar la velocidad
 		jugador.currentSpeed = jugador.SPEED
-		# Desactivar la bandera
-		isCartaAceleracion = false		
+	else:
+		# si no tiene energía, devolvemos un timer vacío para no enviar un null
+		return yield(wait(0), "timeout")
 
 func playCartaDesaceleracion(jugador: Caballo, enemigo: Caballo):
-	# Verificar si la carta esta habilitada
-	if (cartaDesaceleracion.enabled):
-		# Activar la bandera
-		isCartaDesaceleracion = true
+	# Verificar si el jugador tiene energia suficiente
+	if (jugador.energy >= cartaDesaceleracion.energy):
 		# Restar la energia
 		jugador.energy -= cartaDesaceleracion.energy
 		# Disminuir la velocidad del enemigo a un 75% por tres segundos
@@ -52,14 +49,13 @@ func playCartaDesaceleracion(jugador: Caballo, enemigo: Caballo):
 		yield(wait(cartaAceleracion.duration), "timeout")
 		# Reiniciar la velocidad
 		enemigo.currentSpeed = enemigo.SPEED
-		# Desactivar la bandera
-		isCartaDesaceleracion = false	
+	else:
+		# si no tiene energía, devolvemos un timer vacío para no enviar un null
+		return yield(wait(0), "timeout")
 
 func playCartaEnergiaPositiva(jugador: Caballo):
-	# Verificar si la carta esta habilitada
-	if (cartaEnergiaPositiva.enabled):
-		# Activar la bandera
-		isCartaEnergiaPositiva = true
+	# Verificar si el jugador tiene energia suficiente
+	if (jugador.energy >= cartaEnergiaPositiva.energy):
 		# Restar la energia
 		jugador.energy -= cartaEnergiaPositiva.energy
 		# Aumentar la energia del jugador mas rapido
@@ -68,24 +64,24 @@ func playCartaEnergiaPositiva(jugador: Caballo):
 		yield(wait(cartaEnergiaPositiva.duration), "timeout")
 		# Reiniciar el delta
 		jugador.deltaEnergy = DELTA_BASICA_ENERGIA
-		# Desactivar la bandera
-		isCartaEnergiaPositiva = false	
+	else:
+		# si no tiene energía, devolvemos un timer vacío para no enviar un null
+		return yield(wait(0), "timeout")
 		
 func playCartaEnergiaNegativa(jugador: Caballo, enemigo: Caballo):
-	# Verificar si la carta esta habilitada
-	if (cartaEnergiaNegativa.enabled):
-		# Activar la bandera
-		isCartaEnergiaNegativa = true
+	# Verificar si el jugador tiene energia suficiente
+	if (jugador.energy >= cartaEnergiaNegativa.energy):
 		# Restar la energia
 		jugador.energy -= cartaEnergiaNegativa.energy
 		# Quitar energia del enemigo 
-		enemigo.deltaEnergy = DELTA_DECREMENTO_VELOCIDAD
+		enemigo.deltaEnergy = DELTA_DECREMENTO_ENERGIA
 		# Esperar a que el timer termine con el signal timeout
 		yield(wait(cartaEnergiaNegativa.duration), "timeout")
 		# Reiniciar el delta
 		enemigo.deltaEnergy = DELTA_BASICA_ENERGIA
-		# Desactivar la bandera
-		isCartaEnergiaNegativa = false	
+	else:
+		# si no tiene energía, devolvemos un timer vacío para no enviar un null
+		return yield(wait(0), "timeout")
 
 func _process(delta):
 	# Deshabilitar y Habilitar las cartas disponibles del protagonista

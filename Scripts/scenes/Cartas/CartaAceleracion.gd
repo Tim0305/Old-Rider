@@ -9,7 +9,9 @@ func _ready():
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	# Detectar un clic
 	if (event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT):
-		# Jugar la carta con el protagonista
-		print("Aqui")
-		Global.playCartaAceleracion(Global.protagonista)
-		print("Aca")
+		if (Global.cartaAceleracion.enabled):
+			# Jugar la carta con el protagonista
+			Global.isCartaAceleracion = true
+			# Completed para saber cuando la funcion se termino de ejecutar
+			yield(Global.playCartaAceleracion(Global.protagonista), "completed")
+			Global.isCartaAceleracion = false
