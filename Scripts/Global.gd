@@ -22,10 +22,15 @@ var isCartaDesaceleracion: bool = false
 var isCartaEnergiaPositiva: bool = false
 var isCartaEnergiaNegativa: bool = false
 
+# Sonido de fondo
+var sonido
+
 # Funciones
 func playCartaAceleracion(jugador: Caballo):
 	# Verificar si el jugador tiene energia suficiente
-	if (jugador.energy >= cartaAceleracion.energy):
+	if jugador.energy >= cartaAceleracion.energy:
+		# Activar la animacion de powerup
+		jugador.currentStatus = jugador.STATUS.BUFF
 		# Restar la energia
 		jugador.energy -= cartaAceleracion.energy
 		# Aumentar la velocidad a un 125% por tres segundos
@@ -34,13 +39,16 @@ func playCartaAceleracion(jugador: Caballo):
 		yield(wait(cartaAceleracion.duration), "timeout")
 		# Reiniciar la velocidad
 		jugador.currentSpeed = jugador.SPEED
+		# Desactivar la animacion de powerup
+		jugador.currentStatus = jugador.STATUS.NORMAL
 	else:
 		# si no tiene energía, devolvemos un timer vacío para no enviar un null
 		return yield(wait(0), "timeout")
 
 func playCartaDesaceleracion(jugador: Caballo, enemigo: Caballo):
 	# Verificar si el jugador tiene energia suficiente
-	if (jugador.energy >= cartaDesaceleracion.energy):
+	if jugador.energy >= cartaDesaceleracion.energy:
+		enemigo.currentStatus = enemigo.STATUS.DEBUFF
 		# Restar la energia
 		jugador.energy -= cartaDesaceleracion.energy
 		# Disminuir la velocidad del enemigo a un 75% por tres segundos
@@ -49,13 +57,16 @@ func playCartaDesaceleracion(jugador: Caballo, enemigo: Caballo):
 		yield(wait(cartaAceleracion.duration), "timeout")
 		# Reiniciar la velocidad
 		enemigo.currentSpeed = enemigo.SPEED
+		# Desactivar la animacion de powerup
+		enemigo.currentStatus = enemigo.STATUS.NORMAL
 	else:
 		# si no tiene energía, devolvemos un timer vacío para no enviar un null
 		return yield(wait(0), "timeout")
 
 func playCartaEnergiaPositiva(jugador: Caballo):
 	# Verificar si el jugador tiene energia suficiente
-	if (jugador.energy >= cartaEnergiaPositiva.energy):
+	if jugador.energy >= cartaEnergiaPositiva.energy:
+		jugador.currentStatus = jugador.STATUS.BUFF
 		# Restar la energia
 		jugador.energy -= cartaEnergiaPositiva.energy
 		# Aumentar la energia del jugador mas rapido
@@ -64,13 +75,15 @@ func playCartaEnergiaPositiva(jugador: Caballo):
 		yield(wait(cartaEnergiaPositiva.duration), "timeout")
 		# Reiniciar el delta
 		jugador.deltaEnergy = DELTA_BASICA_ENERGIA
+		jugador.currentStatus = jugador.STATUS.NORMAL
 	else:
 		# si no tiene energía, devolvemos un timer vacío para no enviar un null
 		return yield(wait(0), "timeout")
 		
 func playCartaEnergiaNegativa(jugador: Caballo, enemigo: Caballo):
 	# Verificar si el jugador tiene energia suficiente
-	if (jugador.energy >= cartaEnergiaNegativa.energy):
+	if jugador.energy >= cartaEnergiaNegativa.energy:
+		enemigo.currentStatus = enemigo.STATUS.DEBUFF
 		# Restar la energia
 		jugador.energy -= cartaEnergiaNegativa.energy
 		# Quitar energia del enemigo 
@@ -79,6 +92,7 @@ func playCartaEnergiaNegativa(jugador: Caballo, enemigo: Caballo):
 		yield(wait(cartaEnergiaNegativa.duration), "timeout")
 		# Reiniciar el delta
 		enemigo.deltaEnergy = DELTA_BASICA_ENERGIA
+		enemigo.currentStatus = enemigo.STATUS.NORMAL
 	else:
 		# si no tiene energía, devolvemos un timer vacío para no enviar un null
 		return yield(wait(0), "timeout")
@@ -87,25 +101,25 @@ func _process(delta):
 	# Deshabilitar y Habilitar las cartas disponibles del protagonista
 	# Si no se uso y hay suficiente energia, habilitarla
 	# Carta Aceleracion
-	if (protagonista.energy >= cartaAceleracion.energy && !isCartaAceleracion):
+	if protagonista.energy >= cartaAceleracion.energy and not isCartaAceleracion:
 		cartaAceleracion.setEnabled(true)
 	else:
 		cartaAceleracion.setEnabled(false)
 	
 	# Carta Desaceleracion
-	if (protagonista.energy >= cartaDesaceleracion.energy && !isCartaDesaceleracion):
+	if protagonista.energy >= cartaDesaceleracion.energy and not isCartaDesaceleracion:
 		cartaDesaceleracion.setEnabled(true)
 	else:
 		cartaDesaceleracion.setEnabled(false)
 		
 	# Carta Energia Positiva
-	if (protagonista.energy >= cartaEnergiaPositiva.energy && !isCartaEnergiaPositiva):
+	if protagonista.energy >= cartaEnergiaPositiva.energy and not isCartaEnergiaPositiva:
 		cartaEnergiaPositiva.setEnabled(true)
 	else:
 		cartaEnergiaPositiva.setEnabled(false)
 		
 	# Carta Energia Negativa
-	if (protagonista.energy >= cartaEnergiaNegativa.energy && !isCartaEnergiaNegativa):
+	if protagonista.energy >= cartaEnergiaNegativa.energy and not isCartaEnergiaNegativa:
 		cartaEnergiaNegativa.setEnabled(true)
 	else:
 		cartaEnergiaNegativa.setEnabled(false)

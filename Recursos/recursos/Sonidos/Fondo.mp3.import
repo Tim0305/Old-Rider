@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Fondo.mp3-b801d40b493b837c61f4db49b681882e.mp3str"
+
+[deps]
+
+source_file="res://Recursos/recursos/Sonidos/Fondo.mp3"
+dest_files=[ "res://.import/Fondo.mp3-b801d40b493b837c61f4db49b681882e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

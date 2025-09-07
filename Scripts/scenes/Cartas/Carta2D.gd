@@ -18,21 +18,20 @@ func _ready():
 	pass
 
 func _process(delta):
-	if (carta.enabled):
-		if (!isMouseEntered):
+	if carta.enabled:
+		if not isMouseEntered:
 			sprite.modulate.a = OPACITY_ENABLED
 	else:
 		sprite.modulate.a = OPACITY_DISABLED
 	
 func _on_Area2D_mouse_entered():
 	isMouseEntered = true
-	if (carta.enabled):
+	if carta.enabled:
 		# Cambiar la opacidad
 		sprite.modulate.a = OPACITY_HOVER
 
 func _on_Area2D_mouse_exited():
 	isMouseEntered = false
-	if (carta.enabled):
+	if carta.enabled:
 		# Cambiar la opacidad
 		sprite.modulate.a = OPACITY_ENABLED
-	

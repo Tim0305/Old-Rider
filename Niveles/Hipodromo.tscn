@@ -1,19 +1,20 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Recursos/recursos/Fondo.png" type="Texture" id=1]
+[ext_resource path="res://Recursos/recursos/Fondo/Fondo.png" type="Texture" id=1]
 [ext_resource path="res://Objetos/CaballoCafe.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objetos/CaballoBlanco.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Recursos/recursos/START FONDO.png" type="Texture" id=4]
+[ext_resource path="res://Recursos/recursos/Fondo/START FONDO.png" type="Texture" id=4]
 [ext_resource path="res://Objetos/CartaAceleracion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objetos/CartaEnergia+.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objetos/CartaEnergia-.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objetos/CartaDesaceleracion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objetos/BarraEstamina.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Recursos/recursos/START frente.png" type="Texture" id=10]
-[ext_resource path="res://Recursos/recursos/fondo finish.png" type="Texture" id=11]
-[ext_resource path="res://Recursos/recursos/fondo1.png" type="Texture" id=12]
+[ext_resource path="res://Recursos/recursos/Fondo/START frente.png" type="Texture" id=10]
+[ext_resource path="res://Recursos/recursos/Fondo/fondo finish.png" type="Texture" id=11]
+[ext_resource path="res://Recursos/recursos/Fondo/fondo1.png" type="Texture" id=12]
 [ext_resource path="res://Scripts/scenes/ZonaGameOver.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/scenes/Hipodromo.gd" type="Script" id=14]
+[ext_resource path="res://Recursos/recursos/Sonidos/Fondo.wav" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 54, 160.5 )
@@ -129,5 +130,8 @@ script = ExtResource( 13 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaGameOver"]
 position = Vector2( 7800, 127 )
 shape = SubResource( 1 )
+
+[node name="SonidoFondo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
 
 [connection signal="body_entered" from="ZonaGameOver" to="ZonaGameOver" method="_on_ZonaGameOver_body_entered"]

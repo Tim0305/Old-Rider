@@ -8,16 +8,18 @@ func _ready():
 
 # Cada ciclo con tiempo de ejecucion constante
 func _physics_process(delta):
-	if (ganadores.size() > 0):
-		if (ganadores.size() == 2):
+	if ganadores.size() > 0:
+		# Detener el sonido de fondo
+		Hipodromo.sonidoFondo.stop()
+		if ganadores.size() == 2:
 			# Desactivar la camara del prota
 			desactivarMovimientoAutomaticoCamara(camaraProtagonista)
 			print("Empate")
-		elif (ganadores[0] == "CaballoBlanco"):
+		elif ganadores[0] == "CaballoBlanco":
 			# Desactivar la camara del prota
 			desactivarMovimientoAutomaticoCamara(camaraProtagonista)	
 			print("Caballo Blanco")
-		elif (ganadores[0] == "CaballoCafe"):
+		elif ganadores[0] == "CaballoCafe":
 			print("Caballo Cafe")
 
 func desactivarMovimientoAutomaticoCamara(camara: Camera2D):

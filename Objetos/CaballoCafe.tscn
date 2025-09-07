@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Recursos/recursos/CaballoCafe.png" type="Texture" id=1]
+[ext_resource path="res://Recursos/recursos/Caballos/CaballoCafe.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/scenes/Caballos/CaballoCafe.gd" type="Script" id=2]
+[ext_resource path="res://Recursos/recursos/Caballos/buff.png" type="Texture" id=3]
+[ext_resource path="res://Recursos/recursos/Caballos/debuff.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23, 15 )
@@ -38,6 +40,70 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Buff"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Debuff"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Debuff/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Debuff/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
 [node name="CaballoCafe" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -52,3 +118,26 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Corriendo = SubResource( 2 )
 anims/RESET = SubResource( 3 )
+
+[node name="Buff" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Buff"]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Buff"]
+anims/Buff = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="Debuff" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Debuff"]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 4 )
+hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Debuff"]
+root_node = NodePath("../../Buff")
+anims/Debuff = SubResource( 6 )
+anims/RESET = SubResource( 7 )

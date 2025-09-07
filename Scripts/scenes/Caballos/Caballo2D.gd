@@ -1,6 +1,10 @@
 extends KinematicBody2D
 class_name Caballo2D
 
+onready var playerAnimation = $AnimationPlayer
+onready var buff = $Buff
+onready var debuff = $Debuff
+
 var jugador: Caballo
 var timer: Timer
 
@@ -27,6 +31,26 @@ func _physics_process(delta):
 	# Movimiento horizontal
 	jugador.position.x += jugador.currentSpeed * delta
 	position.x = jugador.position.x
+	
+	# Animar los powerups
+	if jugador.currentStatus == jugador.STATUS.NORMAL:
+		buff.visible = false
+		buff.get_node("AnimationPlayer").stop()
+		
+		debuff.visible = false
+		debuff.get_node("AnimationPlayer").stop()
+	elif jugador.currentStatus == jugador.STATUS.BUFF:
+		buff.visible = true
+		buff.get_node("AnimationPlayer").play("Buff")
+		
+		debuff.visible = false
+		debuff.get_node("AnimationPlayer").stop()
+	elif jugador.currentStatus == jugador.STATUS.DEBUFF:
+		buff.visible = false
+		buff.get_node("AnimationPlayer").stop()
+		
+		debuff.visible = true
+		debuff.get_node("AnimationPlayer").play("Debuff")
 
 # Se ejecuta cada segundo
 func _on_timer_timeout():

@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+Hipodromo="*res://Scripts/scenes/Hipodromo.gd"
 
 [display]
 
