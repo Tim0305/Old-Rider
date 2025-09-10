@@ -1,7 +1,7 @@
 extends Node
 class_name Caballo
 
-const SPEED = 1000
+const SPEED = 200
 const MIN_ENERGY = 0
 const MAX_ENERGY = 10
 enum STATUS {
