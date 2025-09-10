@@ -13,14 +13,17 @@ func _physics_process(delta):
 		Hipodromo.sonidoFondo.stop()
 		if ganadores.size() == 2:
 			# Desactivar la camara del prota
-			desactivarMovimientoAutomaticoCamara(camaraProtagonista)
-			print("Empate")
+			#desactivarMovimientoAutomaticoCamara(camaraProtagonista)
+			Global.mensajeGanador = "Empate"
 		elif ganadores[0] == "CaballoBlanco":
 			# Desactivar la camara del prota
-			desactivarMovimientoAutomaticoCamara(camaraProtagonista)	
-			print("Caballo Blanco")
+			#desactivarMovimientoAutomaticoCamara(camaraProtagonista)	
+			Global.mensajeGanador = "!Ganaste!"
 		elif ganadores[0] == "CaballoCafe":
-			print("Caballo Cafe")
+			Global.mensajeGanador = "Perdiste :("	
+
+		# Ir a la pantalla MenuGanador
+		get_tree().change_scene("res://Escenas/MenuGanador.tscn")
 
 func desactivarMovimientoAutomaticoCamara(camara: Camera2D):
 	camara.current = false

@@ -9,6 +9,7 @@ const DELTA_DECREMENTO_VELOCIDAD = 0.75 # 75%
 # Jugadores
 var protagonista: Caballo = Caballo.new(190)
 var enemigo: Caballo = Caballo.new(150)
+var mensajeGanador: String = ""
 
 # Cartas
 var cartaAceleracion: Carta = Carta.new(5, 3)
@@ -26,6 +27,25 @@ var isCartaEnergiaNegativa: bool = false
 var sonido
 
 # Funciones
+
+func resetGame():
+	# Jugadores
+	protagonista = Caballo.new(190)
+	enemigo = Caballo.new(150)
+	mensajeGanador = ""
+
+	# Cartas
+	cartaAceleracion = Carta.new(5, 3)
+	cartaDesaceleracion = Carta.new(5, 3)
+	cartaEnergiaPositiva = Carta.new(2, 3)
+	cartaEnergiaNegativa = Carta.new(2, 3)
+
+	# Banderas para saber cuando una carta esta siendo utilizada
+	isCartaAceleracion = false
+	isCartaDesaceleracion = false
+	isCartaEnergiaPositiva = false
+	isCartaEnergiaNegativa = false
+	
 func playCartaAceleracion(jugador: Caballo):
 	# Verificar si el jugador tiene energia suficiente
 	if jugador.energy >= cartaAceleracion.energy:
